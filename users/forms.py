@@ -7,10 +7,10 @@ class UserModelForm(forms.ModelForm):
         model = User
         fields = '__all__'
 
-    def clean_value(self):
-        value = self.cleaned_data.get('value')
-        if value < 1:
-            self.add_error('value','Valor mínimo deve ser R$ 1')
-        return value
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if len(password) < 8:
+            self.add_error('password','A senha deve possuir no mínimo 8 caracteres')
+        return password
 
 
