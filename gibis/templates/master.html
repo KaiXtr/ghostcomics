@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block titulo %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/favicon.ico' %}" >
+    <!--link src="{% static 'css/style.css' %}"-->
+    <!--script type="javascript" src="{% static 'js/script.js' %}"></script-->
+    <style>
+        :root {
+            --texto: #000000;
+            --header: #EEEEEE;
+            --gibi-card: #CCCCFF;
+            --footer: #DDDDDD;
+        }
+        body {
+            font-family: sans-serif;
+            margin: 0px;
+        }
+        header {
+            background-color: var(--header);
+            width: 100%;
+        }
+        header ul {
+            display: inline-block;
+        }
+        nav {
+            margin-left: 5%;
+            margin-right: 5%;
+            min-height: 500px;
+        }
+        div#gibis-container {
+            display: flex;
+            flex: 3;
+        }
+        div.gibi-card {
+            background-color: var(--gibi-card);
+            border-radius: 20px;
+            padding: 20px;
+            margin-right: 10px;
+        }
+        footer {
+            background-color: var(--footer);
+            text-align: center;
+            padding: 30px 0px 30px 0px;
+            width: 100%;
+        }
+        a:link, a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <ul><a href="/">Início</a></ul>
+        <ul><a href="/admin">Admin</a></ul>
+        <ul><a href="/gibis">Gibis</a></ul>
+        <ul><a href="/about">Sobre</a></ul>
+        <ul><a href="/contact">Contato</a></ul>
+    </header>
+    <nav>
+    {% block conteudo %}{% endblock %}
+    </nav>
+    <footer>
+        Instituto Federal de Brasília - 2023
+    </footer>
+</body>
+</html>

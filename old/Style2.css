@@ -1,0 +1,98 @@
+nav{
+    font: arial;
+    color: white;
+    background-color: black;    
+    text-align: left;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.a-menu{
+    margin-right: 40px;
+    text-decoration: none;
+}
+
+.a-menu:link, .a-menu:visited{
+    color: white;
+}
+    
+.a-menu:hover, .a-menu:active{
+    color: rgb(0, 234, 255);
+}
+
+#LOGIN{  
+	background-color: #ccc;
+}
+
+#LOGIN p{
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+form{
+	width: 400px;
+	margin: 0 auto;
+}
+
+input, select, textarea{
+	width: 100%;
+	height: 30px;
+	margin-bottom: 10px;
+	padding-left: 5px;
+	box-sizing: border-box;
+	border: 1px solid #C4C4C4;
+	color: #777;
+}
+
+label, fieldset, input, select, textarea{
+	font: 1rem 'Roboto', sans-serif;
+}
+
+fieldset{
+	border: 1px solid #CCC;
+	margin-bottom: 10px;
+	padding:10px;
+}
+
+
+#botoes-form{
+	display: flex;
+}
+
+input[type="submit"], input[type="reset"]{
+	margin: 20px;
+	background-color: #88ff00;
+	color: #FFF;
+	border: 0;
+	border-radius: 5px;
+}
+
+input[type="reset"]{
+	background-color: #ff0000;
+}
+
+footer{
+	background-color: #000;
+	padding: 10px;
+}
+
+footer p{
+	text-align: center;
+	color: #FFF;
+}
+
+footer a{
+	color: #FFF;
+}
+
+footer a:hover{
+	color: #00BCD4;
+}
+
+p{
+
+    font: 1.2rem 'arial', sans-serif;
+	color:black;
+	text-align: justify;
+	line-height: 30px;
+}
