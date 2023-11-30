@@ -19,6 +19,7 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from gibis.views import *
+from users.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +30,8 @@ urlpatterns = [
     path('gibi/<int:pk>/update/',GibiUpdateView.as_view(),name='gibi_update'),
     path('gibi/<int:pk>/delete/',GibiDeleteView.as_view(),name='gibi_delete'),    
     path('about/',about,name='about'),
-    path('contact/',contact,name='contact')
+    path('contact/',contact,name='contact'),
+    
+    path('login/',login,name='login'),
+    path('signin/',UserAddView.as_view(),name='user_signin'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
