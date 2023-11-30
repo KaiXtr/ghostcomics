@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+
+{% block titulo %}
+Remover Gibi | Ghost Comics
+{% endblock %}
+
+{% block conteudo %}
+<h1>Remover Gibi</h1>
+<p>Tem certeza que deseja remover o gibi <strong>{{object.name}}</strong>?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Sim, tenho certeza">
+    <a href=""><button>Não, me leve de volta</button></a>
+</form>
+{% endblock %}

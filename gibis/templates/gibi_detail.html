@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block titulo %}
+Adicionar Gibi | Ghost Comics
+{% endblock %}
+
+{% block conteudo %}
+<h1 id="gibi-title">{{object.name}}</h1>
+<div id="gibi-info">
+    <p><strong>Avaliação:</strong> {{object.rate}}</p>
+    <p><strong>Editora:</strong> {{object.company}}</p>
+    <p><strong>Ano de publicação:</strong> {{object.year}}</p>
+    <p><strong>Preço:</strong> R$ {{object.price}}</p>
+</div>
+<img id="gibi-cover" src="{{object.photo.url}}" alt="{{object.name}}">
+
+<div>
+    <a href="{% url 'gibi_update' pk=object.pk  %}"> Editar </a>
+    <a href="{% url 'gibi_delete' pk=object.pk  %}"> Remover </a>
+</div>
+{% endblock %}

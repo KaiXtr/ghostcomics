@@ -18,8 +18,16 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from gibis.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('gibis.urls')),
-] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+    path('',main,name='main'),
+    path('gibis/',GibiListView.as_view(),name='gibi_list'),
+    path('addgibi/',GibiAddView.as_view(),name='gibi_add'),
+    path('gibi/<int:pk>/',GibiDetailView.as_view(),name='gibi_detail'),
+    path('gibi/<int:pk>/update/',GibiUpdateView.as_view(),name='gibi_update'),
+    path('gibi/<int:pk>/delete/',GibiDeleteView.as_view(),name='gibi_delete'),    
+    path('about/',about,name='about'),
+    path('contact/',contact,name='contact')
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

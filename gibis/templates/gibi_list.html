@@ -1,17 +1,10 @@
 {% extends "master.html" %}
 
 {% block titulo %}
-Ghost Comics
+Gibis | Ghost Comics
 {% endblock %}
 
 {% block conteudo %}
-<h1>Ghost Comics</h1>
-<p>Trabalho de Programação para internet I</p>
-<ul>
-    <li>Ewerton Matheus Bezerra Ramos</li>
-    <li>Igor Michels Gonçalves de Carvalho</li>
-    <li>Pedro Henrique</li>
-</ul>
 
 {% if gibis %}
     <div id="gibis-container">
@@ -31,5 +24,4 @@ Ghost Comics
     <p>Parece que não há nenhum gibi disponível para venda...</p>
     <p>Que tal adicionarmos <a href="/addgibi/">um novo gibi?</a></p>
 {% endif %}
-
 {% endblock %}

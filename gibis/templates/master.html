@@ -10,6 +10,9 @@
         :root {
             --texto: #000000;
             --header: #EEEEEE;
+            --input: #DDDDDD;
+            --submit: #AAFFAA;
+            --submit_hover: #88FF88;
             --gibi-card: #CCCCFF;
             --footer: #DDDDDD;
         }
@@ -21,13 +24,50 @@
             background-color: var(--header);
             width: 100%;
         }
+        header h1 {
+            margin-left: 5%;
+            display: inline-block;
+        }
         header ul {
             display: inline-block;
+        }
+        header ul li {
+            margin-right: 30px;
+            list-decoration: none;
+            display: inline-block;
+            transition-duration: 0.2s;
+        }
+        header ul li:hover {
+            transform: translateY(-5px);
         }
         nav {
             margin-left: 5%;
             margin-right: 5%;
+            margin-bottom: 50px;
             min-height: 500px;
+        }
+        form.barra-busca {
+            text-align: right;
+            display: inline-block;
+        }
+        form.barra-busca input {
+            border: none;
+            padding: 10px;
+        }
+        form.barra-busca input[type='text'] {
+            background-color: var(--input);
+            border-radius: 15px 0px 0px 15px;
+            margin-right: 0px;
+        }
+        form.barra-busca input[type='submit'] {
+            background-color: var(--submit);
+            border-radius: 0px 15px 15px 0px;
+            margin-left: 0px;
+            transition-duration: 0.2s;
+        }
+        form.barra-busca input[type='submit']:hover {
+            background-color: var(--submit_hover);
+            cursor: pointer;
         }
         div#gibis-container {
             display: flex;
@@ -38,6 +78,39 @@
             border-radius: 20px;
             padding: 20px;
             margin-right: 10px;
+            transition-duration: 0.2s;
+            opacity: 0%;
+            animation: mostrar-gibis .5s forwards; /*adiciona animação inicial*/
+        }
+        div.gibi-card:hover {
+            transform: scale(1.05);
+        }
+        /*Animação inicial: os cards ficam encolhidos e depois crescem*/
+        @keyframes mostrar-gibis {
+            0% {opacity: 0%;}
+            100% {opacity: 100%;}
+        }
+        div.gibi-card img {
+            max-width: 300px;
+        }
+        h1#gibi-title {
+            font-size: 32pt;
+            animation: mostrar-titulo .5s forwards;
+        }
+        @keyframes mostrar-titulo {
+            0% {opacity: 0%; transform: translateX(-50px);}
+            100% {opacity: 100%; transform: translateX(0px);}
+        }
+        img#gibi-cover {
+            max-width: 30%;
+            display: inline-block;
+        }
+        div#gibi-info {
+            border-right: 2px solid black;
+            margin: 30px;
+            width: 50%;
+            display: inline-block;
+            vertical-align: top;
         }
         footer {
             background-color: var(--footer);
@@ -52,11 +125,18 @@
 </head>
 <body>
     <header>
-        <ul><a href="/">Início</a></ul>
-        <ul><a href="/admin">Admin</a></ul>
-        <ul><a href="/gibis">Gibis</a></ul>
-        <ul><a href="/about">Sobre</a></ul>
-        <ul><a href="/contact">Contato</a></ul>
+        <h1>Ghost Comics</h1>
+        <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="/login">Entrar</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/gibis">Gibis</a></li>
+            <li><a href="/about">Sobre</a></li>
+            <li><a href="/contact">Contato</a></li>
+        </ul>
+        <form class="barra-busca" action="{% url 'gibi_list' %}" method="GET">
+            <input id="search-bar" type="text" name="search" placeholder="Pesquisar..."><input type="submit">
+        </form>
     </header>
     <nav>
     {% block conteudo %}{% endblock %}
