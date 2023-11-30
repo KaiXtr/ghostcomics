@@ -7,9 +7,13 @@ Adicionar Gibi | Ghost Comics
 {% block conteudo %}
 <h1 id="gibi-title">{{object.name}}</h1>
 <div id="gibi-info">
-    <p><strong>Avaliação:</strong> {{object.rate}}</p>
+    <p><strong>Gênero:</strong> {{object.genre}}</p>
     <p><strong>Editora:</strong> {{object.company}}</p>
+    <p><strong>Idioma:</strong> {{object.language}}</p>
     <p><strong>Ano de publicação:</strong> {{object.year}}</p>
+    <p><strong>Volume:</strong> {{object.volume}}</p>
+    <p><strong>Capítulos:</strong> {{object.chapters}}</p>
+    <p><strong>Avaliação:</strong> {{object.rate}}</p>
     <p><strong>Preço:</strong> R$ {{object.price}}</p>
 </div>
 <img id="gibi-cover" src="{{object.photo.url}}" alt="{{object.name}}">
