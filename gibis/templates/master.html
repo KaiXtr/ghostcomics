@@ -45,6 +45,11 @@
             margin-right: 5%;
             margin-bottom: 50px;
             min-height: 500px;
+            animation: mostrar-texto .5s forwards;
+        }
+        @keyframes mostrar-texto {
+            0% {transform: translateX(-10px); opacity: 0%;%}
+            100% {transform: translateX(0px); opacity: 100%;}
         }
         form.barra-busca {
             text-align: right;
@@ -69,7 +74,13 @@
             background-color: var(--submit_hover);
             cursor: pointer;
         }
+        form label {
+            padding-right: 10px;
+            float: right;
+        }
         div#gibis-container {
+            margin-top: 50px;
+            margin-bottom: 50px;
             display: flex;
             flex: 3;
         }
@@ -111,6 +122,10 @@
             width: 50%;
             display: inline-block;
             vertical-align: top;
+        }
+        span.gibi-price {
+            font-weight: bold;
+            font-size: 28pt;
         }
         footer {
             background-color: var(--footer);

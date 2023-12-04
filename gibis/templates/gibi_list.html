@@ -13,12 +13,14 @@ Gibis | Ghost Comics
             <div class="gibi-card" style="animation-delay: 0.{{forloop.counter}}s">
                 <img src="{{i.photo.url}}" alt="{{i.name}}" title="{{i.name}}">
                 <h2>{{i.name}}</h2>
+                {{i.authors}}<br>
                 {{i.genre}} - {{i.company}} - {{i.year}}<br>
-                R$ {{i.price}}
+                <span class="gibi-price">R$ {{i.price}}</a>
             </div>
         </a>
     {% endfor %}
     </div>
+    <button><a href="{% url 'gibi_add' %}">Adicionar Gibi</a></button>
 {% else %}
     <h2>Ué?</h2>
     <p>Parece que não há nenhum gibi disponível para venda...</p>
