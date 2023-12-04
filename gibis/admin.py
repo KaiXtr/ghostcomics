@@ -10,8 +10,8 @@ class CompanyAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 class GibiAdmin(admin.ModelAdmin):
-    list_display = ('name','genre','year',)
-    search_fields = ('name','genre','year',)
+    list_display = ('name','authors','genre','company','year','price')
+    search_fields = ('name','authors','genre','company','year',)
 
 admin.site.register(Genre, GenreAdmin)
 admin.site.register(Company, CompanyAdmin)
