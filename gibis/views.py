@@ -38,30 +38,6 @@ class GibiDeleteView(DeleteView):
     template_name = 'gibi_delete.html'
     success_url = '/gibis/'
 
-'''
-def gibis(request):
-    dados = Gibi.objects.all()
-    search = request.GET.get('search')
-    if search:
-        dados = Gibi.objects.filter(name = search)
-    
-    genres = {}
-    for i in Genre.objects.all().values():
-        genres[i['id']] = i['name']
-        
-    companies = {}
-    for i in Company.objects.all().values():
-        companies[i['id']] = i['name']
-        
-    gbs = []
-    for i in dados.values():
-        i['genre'] = genres[i['genre_id']]
-        i['company'] = companies[i['company_id']]
-        gbs.append(i)
-    
-    return render(request,"gibis.html",{'gibis': gbs})
-'''
-
 def about(request):
     return render(request,"about.html")
 
