@@ -2,3 +2,14 @@ body {
     background-color: #FF0000;
     font-family: sans-serif;
 }
+
+:root {
+    
+    --texto: #000000;
+    --header: #ffb3b3;
+    --input: #DDDDDD;
+    --submit: #AAFFAA;
+    --submit_hover: #88FF88;
+    --gibi-card: #CCCCFF;
+    --footer: #DDDDDD;
+}
