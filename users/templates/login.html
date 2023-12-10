@@ -6,12 +6,17 @@ Entrar | Ghost Comics
 
 {% block conteudo %}
 <h1>Entrar</h1>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST">
     {% csrf_token %}
+    {% if erro %}
+        <span class="mensagem-erro">{{ erro }}</span>
+    {% endif %}
     <table>
-        {{ form.as_table }}
+        {{ login_form.as_table }}
     </table>
-    Não possui cadastro? <a href="{% url 'signin' %}">Faça seu cadastro</a><br>
+    <span class="mensagem-login">
+        <a href="{% url 'esqueceu-senha' %}">Esqueceu a senha?</a>
+    </span>
     <input type="submit" value="Entrar">
 </form>
 {% endblock %}

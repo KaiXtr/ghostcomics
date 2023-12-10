@@ -14,6 +14,7 @@
             --submit: #AAFFAA;
             --submit_hover: #88FF88;
             --gibi-card: #CCCCFF;
+            --erro: #FF5555;
             --footer: #DDDDDD;
         }
         body {
@@ -77,6 +78,15 @@
         form label {
             padding-right: 10px;
             float: right;
+        }
+        span.mensagem-erro {
+            color: var(--erro);
+        }
+        span.mensagem-login {
+            font-size: 10pt;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: block;
         }
         div#gibis-container {
             margin-top: 50px;
@@ -154,7 +164,7 @@
 
         {% if user.is_authenticated %}
           Olá, {{ user.username }}
-          <a href="{% url 'gibi_add' %}">Cadastrar Carro</a>
+          <a href="{% url 'gibi_add' %}">Cadastrar Gibi</a>
           <a href="{% url 'logout' %}">Sair</a>
         {% endif %}
         {% if not user.is_authenticated %}
