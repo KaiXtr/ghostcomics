@@ -4,16 +4,12 @@
 Ghost Comics
 {% endblock %}
 
-{% block conteudo %}
-<div id="banner-container">
-    <div class="banner"></div>
-    <div class="banner"></div>
-    <div class="banner"></div>
+{% block banner %}
+<div id="banner" style="background-image: url('/media/banner.png')">
 </div>
-<h1>Ghost Comics</h1>
-<p>
-    Os melhores gibis de Brasília!
-</p>
+{% endblock %}
+
+{% block conteudo %}
 
 {% if gibis %}
     <div id="gibis-container">
@@ -22,8 +18,9 @@ Ghost Comics
             <div class="gibi-card" style="animation-delay: 0.{{forloop.counter}}s">
                 <img src="{{i.photo.url}}" alt="{{i.name}}" title="{{i.name}}">
                 <h2>{{i.name}}</h2>
+                {{i.authors}}<br>
                 {{i.genre}} - {{i.company}} - {{i.year}}<br>
-                R$ {{i.price}}
+                <span class="gibi-price">R$ {{i.price}}</a>
             </div>
         </a>
     {% endfor %}
@@ -31,7 +28,7 @@ Ghost Comics
 {% else %}
     <h2>Ué?</h2>
     <p>Parece que não há nenhum gibi disponível para venda...</p>
-    <p>Que tal adicionarmos <a href="/addgibi/">um novo gibi?</a></p>
+    <p>Que tal adicionarmos <span class="link"><a href="{% url 'gibi_add' %}">um novo gibi?</a></span></p>
 {% endif %}
 
 {% endblock %}

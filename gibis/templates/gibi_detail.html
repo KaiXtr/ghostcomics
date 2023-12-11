@@ -19,8 +19,10 @@ Adicionar Gibi | Ghost Comics
 </div>
 <img id="gibi-cover" src="{{object.photo.url}}" alt="{{object.name}}">
 
-<div>
-    <a href="{% url 'gibi_update' pk=object.pk  %}"> Editar </a>
-    <a href="{% url 'gibi_delete' pk=object.pk  %}"> Remover </a>
-</div>
+{% if user.is_authenticated %}
+    <div>
+        <a href="{% url 'gibi_update' pk=object.pk  %}"><button class="form-button">Editar</button></a>
+        <a href="{% url 'gibi_delete' pk=object.pk  %}"><button class="form-button">Remover</button></a>
+    </div>
+{% endif %}
 {% endblock %}

@@ -10,7 +10,7 @@ Remover Gibi | Ghost Comics
 
 <form method="POST">
     {% csrf_token %}
-    <input type="submit" value="Sim, tenho certeza">
-    <a href=""><button>Não, me leve de volta</button></a>
+    <input class="form-button" type="submit" value="Sim, tenho certeza">
+    <a href="{% url 'main' %}"><button class="form-button">Não, me leve de volta</button></a>
 </form>
 {% endblock %}

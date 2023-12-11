@@ -23,7 +23,7 @@ from users.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',main,name='main'),
+    path('',GibiMainView.as_view(),name='main'),
     path('gibis/',GibiListView.as_view(),name='gibi_list'),
     path('addgibi/',GibiAddView.as_view(),name='gibi_add'),
     path('gibi/<int:pk>/',GibiDetailView.as_view(),name='gibi_detail'),

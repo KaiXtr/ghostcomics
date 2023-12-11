@@ -7,9 +7,10 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
 
-def main(request):
-    template = loader.get_template("index.html")
-    return HttpResponse(template.render())
+class GibiMainView(ListView):
+    model = Gibi
+    template_name = 'index.html'
+    context_object_name = 'gibis'
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class GibiAddView(CreateView):
@@ -22,6 +23,15 @@ class GibiListView(ListView):
     model = Gibi
     template_name = 'gibi_list.html'
     context_object_name = 'gibis'
+
+    def get_queryset(self):
+        gibis = super().get_queryset().order_by('name')
+        search = self.request.GET.get('search')
+
+        if search:
+            gibis = gibis.filter(name__icontains = search)
+        
+        return gibis
 
 class GibiDetailView(DetailView):
     model = Gibi

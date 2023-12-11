@@ -4,20 +4,26 @@
 <head>
     <title>{% block titulo %}{% endblock %}</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'media/favicon.ico' %}" >
+    <script src="https://kit.fontawesome.com/597fea8ed7.js" crossorigin="anonymous"></script>
     <!--link src="{% static 'css/style.css' %}"-->
     <!--script type="javascript" src="{% static 'js/script.js' %}"></script-->
     <style>
         :root {
-            --texto: #000000;
-            --header: #EEEEEE;
-            --input: #DDDDDD;
-            --submit: #AAFFAA;
-            --submit_hover: #88FF88;
-            --gibi-card: #CCCCFF;
-            --erro: #FF5555;
-            --footer: #DDDDDD;
+            --texto: #ffffff;
+            --link: #b950ff;
+            --header: #2d2e38;
+            --nav: #19191f;
+            --input: #1f2027;
+            --submit: #b950ff;
+            --submit_hover: #7a28e6;
+            --gibi-card: #27272e;
+            --erro: #ff8181;
+            --footer: #08080a;
         }
         body {
+            @import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap');
+            color: var(--texto);
+            background-color: var(--nav);
             font-family: sans-serif;
             margin: 0px;
         }
@@ -26,8 +32,14 @@
             width: 100%;
         }
         header h1 {
+            font-family: "Jolly Lodger";
             margin-left: 5%;
             display: inline-block;
+            transition-duration: .2s;
+        }
+        header h1:hover {
+            color: var(--submit);
+            transform: scale(1.1);
         }
         header ul {
             display: inline-block;
@@ -41,43 +53,92 @@
         header ul li:hover {
             transform: translateY(-5px);
         }
+        header span.user-info {
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        div#banner {
+            background-position: 0px 0px;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            width: 100%;
+            height: 400px;
+            margin: 0px;
+        }
         nav {
-            margin-left: 5%;
-            margin-right: 5%;
-            margin-bottom: 50px;
+            background-color: var(--nav);
+            margin: 0px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 50px;
+            padding-bottom: 50px;
             min-height: 500px;
             animation: mostrar-texto .5s forwards;
         }
         @keyframes mostrar-texto {
-            0% {transform: translateX(-10px); opacity: 0%;%}
+            0% {transform: translateX(-10px); opacity: 0%;}
             100% {transform: translateX(0px); opacity: 100%;}
+        }
+        nav h1 {
+            margin-top: 0px;
+        }
+        nav button.form-button, nav input.form-button {
+            font-weight: bold;
+            background-color: var(--submit);
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            transition-duration: 0.2s;
+        }
+        nav button.form-button:hover, nav input.form-button:hover {
+            background-color: var(--submit_hover);
+            cursor: pointer;
         }
         form.barra-busca {
             text-align: right;
+            vertical-align: center;
             display: inline-block;
+            float: right;
+            margin: 30px;
         }
         form.barra-busca input {
             border: none;
             padding: 10px;
         }
-        form.barra-busca input[type='text'] {
+        form input[type='text'], form input[type='password'],
+        form input[type='number'], form input[type='file'],
+        form select, form textarea {
+            color: var(--texto);
             background-color: var(--input);
-            border-radius: 15px 0px 0px 15px;
+            border: none;
+            border-radius: 15px;
+            padding: 10px;
             margin-right: 0px;
+            margin-bottom: 15px;
         }
-        form.barra-busca input[type='submit'] {
+        form.barra-busca input[type='text'] {
+            border-radius: 15px 0px 0px 15px;
+        }
+        form.barra-busca button {
             background-color: var(--submit);
+            border: none;
             border-radius: 0px 15px 15px 0px;
+            padding: 10px;
             margin-left: 0px;
             transition-duration: 0.2s;
         }
-        form.barra-busca input[type='submit']:hover {
+        form.barra-busca button:hover {
             background-color: var(--submit_hover);
             cursor: pointer;
         }
         form label {
             padding-right: 10px;
             float: right;
+        }
+        form#contact-form label {
+            text-align: right;
+            float: left;
+            display: inline-block;
         }
         span.mensagem-erro {
             color: var(--erro);
@@ -89,19 +150,21 @@
             display: block;
         }
         div#gibis-container {
-            margin-top: 50px;
             margin-bottom: 50px;
             display: flex;
             flex: 3;
+            flex-wrap: wrap;
         }
         div.gibi-card {
             background-color: var(--gibi-card);
             border-radius: 20px;
             padding: 20px;
             margin-right: 10px;
+            margin-bottom: 10px;
             transition-duration: 0.2s;
             opacity: 0%;
             animation: mostrar-gibis .5s forwards; /*adiciona animação inicial*/
+            box-shadow: 0px 10px 20px black;
         }
         div.gibi-card:hover {
             transform: scale(1.05);
@@ -143,34 +206,39 @@
             padding: 30px 0px 30px 0px;
             width: 100%;
         }
-        a:link, a:hover {
+        a:link, a:hover, a:visited {
+            color: var(--texto);
             text-decoration: none;
+        }
+        span.link a:link, span.link a:visited{
+            color: var(--link);
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="/"><h1>Ghost Comics</h1></a>
+        <a href="{% url 'main' %}"><h1>Ghost Comics</h1></a>
         <ul>
-            <li><a href="{% url 'main' %}">Início</a></li>
-            <li><a href="/admin">Admin</a></li>
+            {% if user.is_authenticated %}
+                <span class="user-info">Olá, {{ user.username }}!</span>
+            {% endif %}
             <li><a href="{% url 'gibi_list' %}">Gibis</a></li>
             <li><a href="{% url 'about' %}">Sobre</a></li>
             <li><a href="{% url 'contact' %}">Contato</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="/admin">Admin</a></li>
+                <li><a href="{% url 'gibi_add' %}">Cadastrar Gibi</a></li>
+                <li><a href="{% url 'logout' %}">Sair</a></li>
+            {% endif %}
+            {% if not user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Entrar</a></li>
+            {% endif %}
         </ul>
         <form class="barra-busca" action="{% url 'gibi_list' %}" method="GET">
-            <input id="search-bar" type="text" name="search" placeholder="Pesquisar..."><input type="submit">
+            <input id="search-bar" type="text" name="search" placeholder="Pesquisar..."><button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-
-        {% if user.is_authenticated %}
-          Olá, {{ user.username }}
-          <a href="{% url 'gibi_add' %}">Cadastrar Gibi</a>
-          <a href="{% url 'logout' %}">Sair</a>
-        {% endif %}
-        {% if not user.is_authenticated %}
-          <a href="{% url 'login' %}">Entrar</a>
-        {% endif %}
     </header>
+    {% block banner %}{% endblock %}
     <nav>
     {% block conteudo %}{% endblock %}
     </nav>

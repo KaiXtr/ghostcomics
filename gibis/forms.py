@@ -13,7 +13,7 @@ class GibiModelForm(forms.ModelForm):
         ano_atual = int(data_atual.strftime("%Y"))
         
         year = self.cleaned_data.get('year')
-        if year < ano_atual:
+        if year > ano_atual:
             self.add_error('year','Não é possível adicionar um ano de publicação posterior ao ano atual.')
         return year
     

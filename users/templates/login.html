@@ -15,8 +15,8 @@ Entrar | Ghost Comics
         {{ login_form.as_table }}
     </table>
     <span class="mensagem-login">
-        <a href="{% url 'esqueceu-senha' %}">Esqueceu a senha?</a>
+        <span class="link"><a href="{% url 'esqueceu-senha' %}">Esqueceu a senha?</a></span>
     </span>
-    <input type="submit" value="Entrar">
+    <input class="form-button" type="submit" value="Entrar">
 </form>
 {% endblock %}
