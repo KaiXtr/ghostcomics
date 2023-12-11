@@ -30,6 +30,8 @@
         header {
             background-color: var(--header);
             width: 100%;
+            position: fixed;
+            z-index: 10;
         }
         header h1 {
             font-family: "Jolly Lodger";
@@ -64,16 +66,18 @@
             width: 100%;
             height: 400px;
             margin: 0px;
+            z-index: 2;
         }
         nav {
             background-color: var(--nav);
             margin: 0px;
             padding-left: 5%;
             padding-right: 5%;
-            padding-top: 50px;
+            padding-top: 150px;
             padding-bottom: 50px;
-            min-height: 500px;
+            min-height: 380px;
             animation: mostrar-texto .5s forwards;
+            z-index: 0;
         }
         @keyframes mostrar-texto {
             0% {transform: translateX(-10px); opacity: 0%;}
@@ -100,6 +104,7 @@
             display: inline-block;
             float: right;
             margin: 30px;
+            margin-bottom: 0px;
         }
         form.barra-busca input {
             border: none;
@@ -168,6 +173,7 @@
         }
         div.gibi-card:hover {
             transform: scale(1.05);
+            z-index: 8;
         }
         /*Animação inicial: os cards ficam encolhidos e depois crescem*/
         @keyframes mostrar-gibis {
