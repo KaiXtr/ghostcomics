@@ -18,17 +18,25 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+from gibis.serializer import GibiSerializer, GibiViewSet
 from gibis.views import *
 from users.views import *
 
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'gibis', GibiSerializer)
+
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('',GibiMainView.as_view(),name='main'),
     path('gibis/',GibiListView.as_view(),name='gibi_list'),
     path('addgibi/',GibiAddView.as_view(),name='gibi_add'),
     path('gibi/<int:pk>/',GibiDetailView.as_view(),name='gibi_detail'),
     path('gibi/<int:pk>/update/',GibiUpdateView.as_view(),name='gibi_update'),
-    path('gibi/<int:pk>/delete/',GibiDeleteView.as_view(),name='gibi_delete'),    
+    path('gibi/<int:pk>/delete/',GibiDeleteView.as_view(),name='gibi_delete'), 
+    path('api/', GibiViewSet, include('rest_framework.urls')),
     path('about/',about,name='about'),
     path('contact/',contact,name='contact'),
     
